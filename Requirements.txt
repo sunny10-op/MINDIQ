@@ -1,0 +1,5 @@
+Streamlit
+Pandas
+Numpy
+Streamlit option menu 
+plotty
