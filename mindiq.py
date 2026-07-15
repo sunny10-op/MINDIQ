@@ -34,9 +34,9 @@ SLEEP_COLORS = {"Poor": "#FF4B4B", "Fair": "#FFD23F", "Good": "#4E9F3D"}
 # ---------------------------------------------------------
 @st.cache_data
 def load_data():
- return pd.read_csv("teen_Mental_Health.csv")
+ return pd.read_csv("teen_mental_health.csv")
 
-df_raw = load_data()
+df_raw= load_data()
 
 # ---------------------------------------------------------
 # 3. SIDEBAR AND BACKGROUND IMAGE — BOTH BACKGROUND IMAGE.
