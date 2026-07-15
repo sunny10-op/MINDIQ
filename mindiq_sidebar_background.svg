@@ -1,0 +1,60 @@
+<svg width="400" height="1080" viewBox="0 0 400 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="baseSide" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1224"/>
+      <stop offset="45%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0b0f1e"/>
+    </linearGradient>
+    <radialGradient id="glowTop" cx="30%" cy="8%" r="45%">
+      <stop offset="0%" stop-color="#2d1b4e" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0a0e1a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBottom" cx="70%" cy="95%" r="40%">
+      <stop offset="0%" stop-color="#1a2744" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a0e1a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edgeLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7c5cff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00d9c0" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7c5cff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="1080" fill="url(#baseSide)"/>
+  <rect width="400" height="1080" fill="url(#glowTop)"/>
+  <rect width="400" height="1080" fill="url(#glowBottom)"/>
+
+  <rect x="397" y="0" width="3" height="1080" fill="url(#edgeLine)"/>
+
+  <g stroke="#3d4a6b" stroke-width="1" opacity="0.3">
+    <line x1="80" y1="90" x2="220" y2="200"/>
+    <line x1="220" y1="200" x2="120" y2="340"/>
+    <line x1="220" y1="200" x2="300" y2="330"/>
+    <line x1="120" y1="340" x2="200" y2="500"/>
+    <line x1="300" y1="330" x2="240" y2="520"/>
+    <line x1="200" y1="500" x2="240" y2="520"/>
+    <line x1="140" y1="700" x2="260" y2="640"/>
+    <line x1="260" y1="640" x2="220" y2="820"/>
+    <line x1="220" y1="820" x2="120" y2="920"/>
+    <line x1="220" y1="820" x2="300" y2="960"/>
+  </g>
+  <g fill="#7c5cff" opacity="0.5">
+    <circle cx="80" cy="90" r="3.5"/>
+    <circle cx="220" cy="200" r="4.5"/>
+    <circle cx="120" cy="340" r="3"/>
+    <circle cx="300" cy="330" r="3.5"/>
+  </g>
+  <g fill="#00d9c0" opacity="0.45">
+    <circle cx="200" cy="500" r="3.5"/>
+    <circle cx="240" cy="520" r="3"/>
+    <circle cx="140" cy="700" r="3.5"/>
+    <circle cx="260" cy="640" r="4"/>
+  </g>
+  <g fill="#7c5cff" opacity="0.4">
+    <circle cx="220" cy="820" r="3.5"/>
+    <circle cx="120" cy="920" r="3"/>
+    <circle cx="300" cy="960" r="3"/>
+  </g>
+
+  <rect width="400" height="1080" fill="black" opacity="0.12"/>
+</svg>
