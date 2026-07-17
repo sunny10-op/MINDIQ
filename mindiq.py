@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
 import base64
 
@@ -36,7 +37,7 @@ SLEEP_COLORS = {"Poor": "#FF4B4B", "Fair": "#FFD23F", "Good": "#4E9F3D"}
 def load_data():
  return pd.read_csv("teen_mental_health.csv")
 
-df_raw= load_data()
+df_raw = load_data()
 
 # ---------------------------------------------------------
 # 3. SIDEBAR AND BACKGROUND IMAGE — BOTH BACKGROUND IMAGE.
@@ -149,7 +150,7 @@ This project analysis:
         counts = df.platform_usage.value_counts().reset_index()
         counts.columns = ["platform", "count"]
         fig = px.bar(counts, x="count", y="platform", orientation="h",
-                     template=PLOTLY_TEMPLATE, color="platform", color_discrete_sequence=COLOR_SEQ)
+        template=PLOTLY_TEMPLATE, color="platform", color_discrete_sequence=COLOR_SEQ)
         fig.update_layout(showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -157,7 +158,7 @@ This project analysis:
         st.subheader("Risk Score by Age")
         by_age = df.groupby("age")["mental_health_risk_score"].mean().reset_index()
         fig = px.bar(by_age, x="age", y="mental_health_risk_score", template=PLOTLY_TEMPLATE,
-                     color="mental_health_risk_score", color_continuous_scale=["#FF8C42", "#FF4B4B"])
+        color="mental_health_risk_score", color_continuous_scale=["#FF8C42", "#FF4B4B"])
         fig.update_layout(coloraxis_showscale=False)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -207,20 +208,33 @@ elif page == "📈 Analytics:":
         fig.update_layout(showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
+    
     with t2:
-        counts = df.digital_wellbeing_flag.value_counts().reset_index()
-        counts.columns = ["status", "count"]
-        col1, col2 = st.columns(2)
-        with col1:
-            fig = px.pie(counts, names="status", values="count", hole=0.55,
-                         color="status", color_discrete_map=RISK_COLORS, template=PLOTLY_TEMPLATE)
+         counts = df.digital_wellbeing_flag.value_counts().reset_index()
+         counts.columns = ["status", "count"]
+         col1, col2 = st.columns(2)
+         with col1:
+            fig = go.Figure()
+            fig.add_trace(go.Scatterpolar(
+            r=counts["count"].tolist() + [counts["count"].tolist()[0]],
+            theta=counts["status"].tolist() + [counts["status"].tolist()[0]],
+            fill="toself",
+            marker=dict(color="yellow"),
+            line=dict(color="gray")
+        ))
+            fig.update_layout(
+            polar=dict(radialaxis=dict(visible=True)),
+            template=PLOTLY_TEMPLATE,
+            showlegend=False,
+            title="Distribution by Status"
+        )
             st.plotly_chart(fig, use_container_width=True)
-        with col2:
-            fig = px.bar(counts, x="status", y="count", color="status",
-                         color_discrete_map=RISK_COLORS, template=PLOTLY_TEMPLATE)
-            fig.update_layout(showlegend=False)
-            st.plotly_chart(fig, use_container_width=True)
-
+            with col2:
+             fig = px.bar(counts, x="status", y="count", color="status",
+                     color_discrete_map=RISK_COLORS, template=PLOTLY_TEMPLATE)
+             fig.update_layout(showlegend=False)
+             st.plotly_chart(fig, use_container_width=True)
+        
     with t3:
         fig = px.box(df, x="sleep_quality", y="stress_level", color="sleep_quality",
                      category_orders={"sleep_quality": ["Poor", "Fair", "Good"]},
